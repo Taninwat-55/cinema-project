@@ -1,0 +1,37 @@
+.sort-container {
+  position: absolute;
+  display: grid;
+  top: 11rem;
+  left: 1rem;
+  gap: 1rem;
+  align-items: center;
+  background: #fbbf24;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+}
+
+.sort-container select {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  padding: 8px 12px;
+  border-radius: 5px;
+  appearance: none;
+  transition: all 0.8s ease-in-out;
+}
+
+.sort-container select:focus {
+  outline: none;
+  box-shadow: 0 0 9px rgba(255, 255, 255, 0.5);
+}
+
+.sort-container select:not(:focus) {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+}

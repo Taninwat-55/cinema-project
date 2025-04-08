@@ -1,0 +1,295 @@
+.sign-up-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sign-up-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.sign-up-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between the two input boxes */
+  padding: 20px;
+}
+
+.sign-up-inputs input {
+  background: rgba(200, 200, 200, 0.2); /* Slightly more opaque gray */
+  border: 1px solid rgba(160, 160, 160, 0.25); /* Soft gray border */
+  border-radius: 10px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+  backdrop-filter: blur(12px); /* Stronger blur for glass effect */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for extra glassmorphism flair */
+.sign-up-inputs input:hover {
+  background: rgba(220, 220, 220, 0.25);
+  border-color: rgba(180, 180, 180, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+input {
+  width: 300px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: rgb(99, 99, 99);
+  font-weight: bold;
+}
+
+.sign-up {
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  border: none;
+  background-color: #222831;
+  color: white;
+}
+
+.sign-up:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  transition: ease-out 0.3s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.welcome {
+  width: 50%;
+  background-image: url('/src/assets/popcorn.png'); /* Se till att bilden ligger i public/assets */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.welcome a {
+  text-decoration: none;
+  color: white;
+}
+
+.welcome a:visited {
+  color: white;
+}
+
+.welcome a:hover {
+  color: white;
+}
+
+.welcome a:active {
+  color: white;
+}
+
+.sign-in-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sign-in-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.sign-in-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sign-in-inputs input {
+  background: rgba(200, 200, 200, 0.2);
+  border: 1px solid rgba(160, 160, 160, 0.25);
+  border-radius: 10px;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for extra glassmorphism flair */
+.sign-in-inputs input:hover {
+  background: rgba(220, 220, 220, 0.25);
+  border-color: rgba(180, 180, 180, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.sign-in {
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  background-color: #222831;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sign-in:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  transition: ease-out 0.3s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.SVG-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.SVG-container svg {
+  width: 2rem;
+  height: 2rem;
+  transition: transform 0.3s ease, fill 0.3s ease;
+  cursor: pointer;
+}
+
+.google-svg {
+  fill: #4285f4;
+}
+
+.facebook-svg {
+  fill: #1877f2;
+}
+
+.apple-svg {
+  fill: #000;
+}
+
+.SVG-container svg:hover {
+  transform: scale(1.2); /* Slight zoom on hover */
+}
+
+.welcome-sign-in {
+  width: 50%;
+  background-image: url('/src/assets/popcorn.png'); /* Se till att bilden ligger i public/assets */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.sign-in-link {
+  text-decoration: none;
+  color: white;
+}
+
+.sign-in-button {
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  background-color: #222831;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sign-in-button:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  transition: ease-out 0.3s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.Home-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  width: 3rem;
+  border-radius: 8px;
+  background-color: #222831;
+  border: none;
+  cursor: pointer;
+}
+
+.home-link {
+  text-decoration: none;
+  color: white;
+  padding: 4px 4px 0px 4px;
+  border-radius: 8px;
+}
+
+.Home-btn:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  transition: ease-out 0.3s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sign-in-button {
+  display: inline-block;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.sign-in-link {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #222831;
+  border: solid 1.5px white;
+}
+
+.sign-in-link:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+  transition: ease-out 0.3s;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sign-in {
+  text-decoration: none;
+}

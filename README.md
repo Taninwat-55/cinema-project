@@ -45,12 +45,51 @@ A cinema website project with online movie information and booking capabilities.
 2. Run the setup script
    \`\`\`bash
    ./setup.sh
+   or
+   npm run setup
    \`\`\`
 
 3. Start the development servers
    \`\`\`bash
    npm run dev
    \`\`\`
+
+### Manual Setup (If the script doesn't work)
+
+# Install root dependencies
+npm install
+
+# Install client dependencies
+cd client
+npm install
+
+# Install server dependencies
+cd ..
+cd server
+npm install
+
+# Create the .env file manually in the server directory and include:
+PORT=3000
+OMDB_API_KEY=your_api_key_here
+
+### Set up the database
+
+# Navigate to the server directory if not already there
+cd server
+
+# Run the database setup script
+node db/setup-db.js
+
+# Run the data seeding script
+node seeds/insertMovies.js
+
+### Start the development server
+
+# Return to project root
+cd ..
+
+# Start both client and server
+npm run dev
 
 ### Development Workflow
 
