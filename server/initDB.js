@@ -15,6 +15,8 @@ const statements = schema
 
 try {
   db.pragma('foreign_keys = ON');
+
+  // Execute each statement
   for (const stmt of statements) {
     console.log('🚀 Executing:', stmt); // för debugging
     db.exec(stmt + ';');
@@ -23,3 +25,12 @@ try {
 } catch (err) {
   console.error('❌ Fel vid initiering av databas:', err.message);
 }
+
+// Special case for the trigger - add it manually at the end
+db.exec(`
+    CREATE TRIGGER IF NOT EXISTS update_movies_timestamp
+    AFTER UPDATE ON movies
+    BEGIN
+        UPDATE movies SET updated_at = CURRENT_TIMESTAMP WHERE movie_id = NEW.movie_id;
+    END;
+`);
