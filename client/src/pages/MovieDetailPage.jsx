@@ -1,9 +1,24 @@
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import '../styles/MovieDetailPage.css';
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "../styles/MovieDetailPage.css";
 
 function MovieDetailPage() {
-  const { id } = useParams();
+  return (
+    <div className="movie-details-container">
+      <MovieDetailsSideBar />
+      <MovieInformation />
+      <ProfileAccount />
+    </div>
+  );
+}
+
+export default MovieDetailPage;
+
+/*
+
+
+
+ const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [showings, setShowings] = useState([]);
 
@@ -19,9 +34,10 @@ function MovieDetailPage() {
 
   if (!movie) return <p>Laddar film...</p>;
 
-  return (
-    <div className="movie-detail-page">
-      <h1>{movie.title}</h1>
+
+
+
+<h1>{movie.title}</h1>
 
       {movie.poster_url && (
         <img src={movie.poster_url} alt={`Poster för ${movie.title}`} />
@@ -80,8 +96,5 @@ function MovieDetailPage() {
       ) : (
         <p>Inga visningar tillgängliga.</p>
       )}
-    </div>
-  );
-}
-
-export default MovieDetailPage;
+ 
+ */

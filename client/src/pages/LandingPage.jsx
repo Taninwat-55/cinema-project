@@ -1,18 +1,21 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Searchbar from '../components/Searchbar';
-import SortPrice from '../components/SortPrice';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Searchbar from "../components/Searchbar";
+import SortPrice from "../components/SortPrice";
+import Navbar from "../components/Navbar";
+import HeroMovies from "../components/HeroMovies";
+import "../styles/LandingPage.css";
 
 function LandingPage() {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
-  const [sortPrice, setSortPrice] = useState('desc');
+  const [searchInput, setSearchInput] = useState("");
+  const [sortPrice, setSortPrice] = useState("desc");
 
   useEffect(() => {
-    fetch('/api/movies')
+    fetch("/api/movies")
       .then((res) => {
-        if (!res.ok) throw new Error('Nätverksfel eller ogiltigt svar');
+        if (!res.ok) throw new Error("Nätverksfel eller ogiltigt svar");
         return res.json();
       })
       .then((data) => {
@@ -20,7 +23,7 @@ function LandingPage() {
         setFilteredMovies(data);
       })
       .catch((error) => {
-        console.error('❌ Fel vid hämtning av filmer:', error.message);
+        console.error("❌ Fel vid hämtning av filmer:", error.message);
       });
   }, []);
 
@@ -44,14 +47,25 @@ function LandingPage() {
     setSortPrice(e.target.value);
   };
   const sortedMovies = [...filteredMovies].sort((a, b) => {
-    return sortPrice === 'asc'
+    return sortPrice === "asc"
       ? a.release_year - b.release_year
       : b.release_year - a.release_year;
   });
 
   return (
-    <div>
-      <h1>The PawnStorm cinema</h1>
+    <div className="landing-page-contianer">
+      <Navbar />
+      <HeroMovies />
+    </div>
+  );
+}
+
+export default LandingPage;
+
+/*
+ 
+
+ <h1>The PawnStorm cinema</h1>
 
       <div>
         <Link className="sign-in-btn" to="/sign-in">
@@ -81,8 +95,6 @@ function LandingPage() {
           </li>
         ))}
       </ul>
-    </div>
-  );
-}
 
-export default LandingPage;
+      
+ */
