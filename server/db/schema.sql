@@ -1,5 +1,5 @@
 -- Tabell för filmer
-CREATE TABLE movies (
+CREATE TABLE IF NOT EXISTS movies (
     movie_id INTEGER PRIMARY KEY AUTOINCREMENT,
     imdb_id TEXT NOT NULL,
     title TEXT NOT NULL,
@@ -12,10 +12,10 @@ CREATE TABLE movies (
     genre TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 -- Tabell för biografsalonger
-CREATE TABLE theaters (
+CREATE TABLE IF NOT EXISTS theaters (
     theater_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     seats_rows INTEGER NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE theaters (
 );
 
 -- Tabell för filmvisningar
-CREATE TABLE showings (
+CREATE TABLE IF NOT EXISTS showings (
     showing_id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER NOT NULL,
     theater_id INTEGER NOT NULL,
@@ -34,10 +34,10 @@ CREATE TABLE showings (
     price_senior REAL NOT NULL,
     FOREIGN KEY (movie_id) REFERENCES movies (movie_id),
     FOREIGN KEY (theater_id) REFERENCES theaters (theater_id)
-)
+);
 
 -- Tabell för platser i salonger
-CREATE TABLE seats (
+CREATE TABLE IF NOT EXISTS seats (
     seat_id INTEGER PRIMARY KEY AUTOINCREMENT,
     theater_id INTEGER NOT NULL,
     row_number INTEGER NOT NULL,
@@ -47,16 +47,17 @@ CREATE TABLE seats (
 );
 
 -- Tabell för användare (för inloggning och bokningshistorik)
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     name TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'user';
 );
 
 -- Tabell för bokningar
-CREATE TABLE bookings (
+CREATE TABLE IF NOT EXISTS bookings (
     booking_id INTEGER PRIMARY KEY AUTOINCREMENT,
     booking_number TEXT UNIQUE NOT NULL,
     user_id INTEGER,
@@ -68,7 +69,7 @@ CREATE TABLE bookings (
 );
 
 -- Tabell för bokningsdetaljer (antal biljetter av varje typ)
-CREATE TABLE booking_details (
+CREATE TABLE IF NOT EXISTS booking_details (
     booking_detail_id INTEGER PRIMARY KEY AUTOINCREMENT,
     booking_id INTEGER NOT NULL,
     ticket_type TEXT NOT NULL, -- 'vuxen', 'barn', 'pensionär'
@@ -78,7 +79,7 @@ CREATE TABLE booking_details (
 );
 
 -- Tabell för bokade platser
-CREATE TABLE booked_seats (
+CREATE TABLE IF NOT EXISTS booked_seats (
     booked_seat_id INTEGER PRIMARY KEY AUTOINCREMENT,
     booking_id INTEGER NOT NULL,
     seat_id INTEGER NOT NULL,
@@ -87,7 +88,7 @@ CREATE TABLE booked_seats (
 );
 
 -- Tabell för användares watchlist
-CREATE TABLE watchlist (
+CREATE TABLE IF NOT EXISTS watchlist (
     watchlist_id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     movie_id INTEGER NOT NULL,

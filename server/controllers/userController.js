@@ -65,9 +65,13 @@ function getUserBookings(req, res) {
     const userId = req.params.userId;
 
     // Check if user exists
-    const user = userModel.getUserById(userId);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+    // const user = userModel.getUserById(userId);
+    // if (!user) {
+    //   return res.status(404).json({ error: 'User not found' });
+    // }
+    if (req.user.userId != userId) {
+      // != instead of !== to handle string/number comparison
+      return res.status(403).json({ error: 'Unauthorized access to bookings' });
     }
 
     const bookings = userModel.getUserBookings(userId);

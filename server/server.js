@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 // Import routes
@@ -11,6 +12,7 @@ const usersRoutes = require('./routes/userRoutes');
 const theatersRoutes = require('./routes/theaterRoutes');
 const seatsRoutes = require('./routes/seatRoutes');
 const watchlistRoutes = require('./routes/watchlistRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +20,7 @@ const PORT = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use('/api/movies', moviesRoutes);
@@ -27,6 +30,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/theaters', theatersRoutes);
 app.use('/api/seats', seatsRoutes);
 app.use('/api/watchlist', watchlistRoutes);
+app.use('/api/auth', authRoutes);
 
 // Simple test
 app.get('/', (req, res) => {
