@@ -1,94 +1,98 @@
-# Cinema Website
+# 🎬 Cinema Website
 
 A cinema website project with online movie information and booking capabilities.
 
-## Features
+## ✨ Features
 
-- View list of current movies
-- Watch trailers and see detailed movie information
-- View movie screenings
+- Browse a list of current movies
+- Watch trailers and see detailed movie info
+- View available screenings per movie
 - Book tickets for specific screenings
-- Select number of tickets (adult/senior/child)
-- Select seats using a graphical theater map
-- See total price for booking
-- Receive unique booking number
-- Login to view upcoming and past bookings
-- Admin interface for managing movies and screenings
+- Choose number of tickets (adult/child/senior)
+- Select seats via a graphical seat map
+- View total price for the booking
+- Receive a unique booking number
+- Sign in to view your bookings
+- Admin interface for managing movies & screenings
 
-## Tech Stack
+---
+
+## 🧰 Tech Stack
 
 ### Frontend
-- React with Vite
-- React Router for navigation
-- Component-based architecture
-- Dynamic rendering of theater seats
+
+- React (with Vite)
+- React Router DOM (v7+)
+- Component-based structure
+- Conditional rendering & hooks
 
 ### Backend
+
 - Express.js
-- SQLite with better-sqlite3
-- OMDb API for movie information
+- SQLite + better-sqlite3
+- OMDb API for fetching movie data
 
-## Getting Started
+---
 
-### Prerequisites
-- Node.js 23.2.0
-- npm 11.2.0
+## 🚀 Getting Started
 
-### Installation
+### ✅ Prerequisites
 
-1. Clone the repository
-   \`\`\`bash
-   git clone https://github.com/Taninwat-55/cinema-project
-   cd cinema-project
-   \`\`\`
+- Node.js `v23.2.0`
+- npm `v11.2.0`  
+  _(If you use NVM, run: `nvm use 23.2.0`)_
 
-2. Run the setup script
-   \`\`\`bash
-   ./setup.sh
-   or
-   npm run setup
-   \`\`\`
+---
 
-3. Start the development servers
-   \`\`\`bash
-   npm run dev
-   \`\`\`
+### 🛠 Installation
 
-### Manual Setup (If the script doesn't work)
+Clone the repository
+\`\`\`bash
+git clone https://github.com/Taninwat-55/cinema-project
+cd cinema-project
+npm run setup
+\`\`\`
+
+### 🧪 Start the development server
+
+\`\`\`bash
+npm run dev
+\`\`\`
+
+### Manual Setup (If setup.sh doesn't work)
 
 # Install root dependencies
-npm install
 
-# Install client dependencies
-cd client
 npm install
+cd client && npm install
+cd ../server && npm install
 
-# Install server dependencies
-cd ..
-cd server
-npm install
+# Create .env manually in /server
 
-# Create the .env file manually in the server directory and include:
 PORT=3000
 OMDB_API_KEY=your_api_key_here
+
+# Start database manually via SQLiteStudio or seed scripts
+
+# Then return to root:
+
+cd ..
+npm run dev
 
 ### Set up the database
 
 # Navigate to the server directory if not already there
+
 cd server
-
-# Run the database setup script
-node db/setup-db.js
-
-# Run the data seeding script
-node seeds/insertMovies.js
 
 ### Start the development server
 
 # Return to project root
+
 cd ..
 
 # Start both client and server
+
 npm run dev
 
 ### Development Workflow
@@ -112,6 +116,7 @@ npm run dev
 ## Database Structure
 
 The project uses SQLite with the following tables:
+
 - movies: Stores movie information
 - theaters: Cinema theaters/rooms
 - showings: Movie screening times
@@ -123,13 +128,35 @@ The project uses SQLite with the following tables:
 ## API Endpoints
 
 ### Movies
+
 - GET /api/movies - List all movies
-- GET /api/movies/:id - Get movie details
+- GET /api/movies/:id - Get one movie details
+- GET /api/movies/:id/showings – All showings for movie
 
 ### Showings
+
 - GET /api/showings - List all showings
-- GET /api/showings/:movieId - Get showings for a movie
+- GET /api/showings/:id - Get showing info
+- GET /api/seats/:showingId/available – Available seats for showing
 
 ### Bookings
+
 - POST /api/bookings - Create a new booking
 - GET /api/bookings/:userId - Get bookings for a user
+
+### 💡 Notes
+- Seed script automatically deletes and resets all tables when run in development.
+- To reset database: run NODE_ENV=development node server/seeds/seedAll.js
+- Database is .gitignored, each dev gets their own local DB.
+
+### Authors
+- Taninwat
+- Hedvig
+- Milad
+- Valmir
+
+### 🧼 Coming soon
+- Admin dashboard
+- User login
+- Email confirmation after booking
+- Rating & review system

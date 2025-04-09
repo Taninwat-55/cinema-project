@@ -1,8 +1,36 @@
 const { exec } = require('child_process');
+const Database = require('better-sqlite3');
+
+// 🧹 Funktion för att rensa alla tabeller
+function clearAllTables() {
+  const db = new Database('db/cinema.db');
+
+  db.exec(`
+    PRAGMA foreign_keys = OFF;
+
+    DELETE FROM bookings;
+    DELETE FROM seats;
+    DELETE FROM screenings;
+    DELETE FROM users;
+    DELETE FROM movies;
+
+    PRAGMA foreign_keys = ON;
+  `);
+
+  db.close();
+  console.log('🧹 Cleared all tables before seeding.');
+}
+
+// ✅ Endast rensa databasen i utvecklingsmiljö
+if (process.env.NODE_ENV !== 'production') {
+  clearAllTables();
+} else {
+  console.warn('⚠️ Not allowed to run in production!');
+}
 
 console.log('Starting database seeding...');
 
-// Function to run a seed script
+// Funktion för att köra varje seed script
 function runSeed(scriptName) {
   return new Promise((resolve, reject) => {
     console.log(`Running ${scriptName}...`);
@@ -19,10 +47,9 @@ function runSeed(scriptName) {
   });
 }
 
-// Run seed scripts in sequence
+// Kör alla seeds i ordning
 async function seedAll() {
   try {
-    // Order matters here - some seeds depend on others
     await runSeed('insertMovies');
     await runSeed('insertSeats');
     await runSeed('insertScreenings');

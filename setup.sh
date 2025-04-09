@@ -38,6 +38,7 @@ mkdir -p server/db
 
 # Initialize database if it doesn't exist
 if [ ! -f db/cinema.db ]; then
+  DB_WAS_CREATED=true
   echo -e "${GREEN}🗄️ Setting up database...${NC}"
   # Check if schema.sql exists
   if [ -f db/schema.sql ]; then
@@ -83,13 +84,23 @@ else
   echo -e "${YELLOW}Database already exists. Skipping database creation.${NC}"
 fi
 
-# Prompt user to seed the database
-echo ""
-echo -e "${YELLOW}Do you want to seed the database with sample movies? (y/n)${NC}"
-read -r answer
-if [[ "$answer" =~ ^[Yy]$ ]]; then
-  echo -e "${GREEN}🌱 Seeding database with sample movies...${NC}"
-  node seeds/insertMovies.js
+# Run full seed if database was just created
+if [ "$DB_WAS_CREATED" = true ]; then
+  echo -e "${GREEN}🌱 Seeding full database...${NC}"
+  cd ..
+  NODE_ENV=development node server/seeds/seedAll.js
+  cd server
+else
+  # Prompt to optionally re-seed the database
+  echo ""
+  echo -e "${YELLOW}Do you want to re-seed the database with sample data? (y/n)${NC}"
+  read -r answer
+  if [[ "$answer" =~ ^[Yy]$ ]]; then
+    echo -e "${GREEN}🌱 Re-seeding full database...${NC}"
+    cd ..
+    NODE_ENV=development node server/seeds/seedAll.js
+    cd server
+  fi
 fi
 
 echo -e "${GREEN}✅ Setup complete! Start the application with 'npm run dev'${NC}"
