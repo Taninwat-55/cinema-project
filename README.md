@@ -47,19 +47,19 @@ A cinema website project with online movie information and booking capabilities.
 ### 🛠 Installation
 
 Clone the repository
-\`\`\`bash
+```bash
 git clone https://github.com/Taninwat-55/cinema-project
 cd cinema-project
 npm run setup
-\`\`\`
+```
 
 ### 🧪 Start the development server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
-### Manual Setup (If setup.sh doesn't work)
+## Manual Setup (If setup.sh doesn't work)
 
 # Install root dependencies
 
@@ -145,17 +145,20 @@ The project uses SQLite with the following tables:
 - GET /api/bookings/:userId - Get bookings for a user
 
 ### 💡 Notes
+
 - Seed script automatically deletes and resets all tables when run in development.
 - To reset database: run NODE_ENV=development node server/seeds/seedAll.js
 - Database is .gitignored, each dev gets their own local DB.
 
 ### Authors
+
 - Taninwat
 - Hedvig
 - Milad
 - Valmir
 
 ### 🧼 Coming soon
+
 - Admin dashboard
 - User login
 - Email confirmation after booking
