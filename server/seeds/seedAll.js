@@ -1,65 +1,30 @@
-const { exec } = require('child_process');
-const Database = require('better-sqlite3');
+// server/seeds/index.js
+// This file allows importing all seed files at once
 
-// 🧹 Funktion för att rensa alla tabeller
-function clearAllTables() {
-  const db = new Database('db/cinema.db');
+const path = require('path');
+const fs = require('fs');
 
-  db.exec(`
-    PRAGMA foreign_keys = OFF;
+// Function to run all seed scripts in the proper order
+function seedDatabase() {
+  console.log('Starting database seeding...');
 
-    DELETE FROM bookings;
-    DELETE FROM seats;
-    DELETE FROM screenings;
-    DELETE FROM users;
-    DELETE FROM movies;
-
-    PRAGMA foreign_keys = ON;
-  `);
-
-  db.close();
-  console.log('🧹 Cleared all tables before seeding.');
-}
-
-// ✅ Endast rensa databasen i utvecklingsmiljö
-if (process.env.NODE_ENV !== 'production') {
-  clearAllTables();
-} else {
-  console.warn('⚠️ Not allowed to run in production!');
-}
-
-console.log('Starting database seeding...');
-
-// Funktion för att köra varje seed script
-function runSeed(scriptName) {
-  return new Promise((resolve, reject) => {
-    console.log(`Running ${scriptName}...`);
-
-    exec(`node ${__dirname}/${scriptName}.js`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error executing ${scriptName}: ${error.message}`);
-        return reject(error);
-      }
-
-      console.log(stdout);
-      resolve();
-    });
-  });
-}
-
-// Kör alla seeds i ordning
-async function seedAll() {
   try {
-    await runSeed('insertMovies');
-    await runSeed('insertSeats');
-    await runSeed('insertShowings');
-    await runSeed('insertUsers');
-    await runSeed('insertBookings');
+    // Run seed files in specific order
+    require('./insertMovies');
+    require('./insertSeats');
+    require('./insertUsers');
+    require('./insertShowings');
+    require('./insertBookings');
 
-    console.log('✅ All seed scripts completed successfully!');
+    console.log('✅ Database seeded successfully!');
   } catch (error) {
-    console.error('❌ Seeding process failed');
+    console.error('❌ Error seeding database:', error.message);
   }
 }
 
-seedAll();
+// Check if this file is being run directly
+if (require.main === module) {
+  seedDatabase();
+}
+
+module.exports = { seedDatabase };

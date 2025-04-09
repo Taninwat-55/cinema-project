@@ -1,10 +1,19 @@
+// const Database = require('better-sqlite3');
+// const path = require('path');
+
+// const db = new Database(path.join(__dirname, 'cinema.db'));
+
+// // // Enable foreign keys
+// db.pragma('foreign_keys = ON');
+
+// module.exports = db;
 
 const Database = require('better-sqlite3');
 const path = require('path');
 
 const db = new Database(path.join(__dirname, 'cinema.db'));
 
-// // Enable foreign keys
+// Enable foreign keys
 db.pragma('foreign_keys = ON');
 
 module.exports = db;

@@ -13,6 +13,23 @@ const theatersRoutes = require('./routes/theaterRoutes');
 const seatsRoutes = require('./routes/seatRoutes');
 const watchlistRoutes = require('./routes/watchlistRoutes');
 const authRoutes = require('./routes/authRoutes');
+const { initializeDatabase } = require('./db/dbInit');
+
+try {
+  const dbInitialized = initializeDatabase();
+  if (dbInitialized) {
+    // If database was just created, seed with initial data
+    // Optional: Only uncomment these if you want to auto-seed data
+    // require('./seeds/insertMovies');
+    // require('./seeds/insertSeats');
+    // require('./seeds/insertUsers');
+    // require('./seeds/insertShowings');
+    // require('./seeds/insertBookings');
+  }
+} catch (error) {
+  console.error('Error during database initialization:', error);
+  // Don't exit - let's still try to start the server
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
