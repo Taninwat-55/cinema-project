@@ -47,6 +47,7 @@ A cinema website project with online movie information and booking capabilities.
 ### 🛠 Installation
 
 Clone the repository
+
 ```bash
 git clone https://github.com/Taninwat-55/cinema-project
 cd cinema-project
@@ -89,23 +90,55 @@ cd ..
 npm run dev
 ```
 
-### Development Workflow
+## Development Workflow
 
-1. Create a feature branch
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+1. Before starting a new task
+
+```bash
+git checkout main
+git pull
+git checkout -b feature/your-feature-name
+```
 
 2. Make your changes
 
 3. Commit and push your changes
-   ```bash
-   git add .
-   git commit -m "Description of your changes"
-   git push -u origin feature/your-feature-name
-   ```
 
-4. Create a Pull Request on GitHub
+```bash
+git add .
+git commit -m "Description of your changes"
+git push 
+```
+
+4. Before create a Pull Request on GitHub
+
+```bash
+git checkout main
+git pull
+
+git checkout feature/your-feature-name
+git merge main
+```
+
+5. Create a Pull Request
+
+- Go to GitHub and open a PR from feature/your-feature-name → main
+- Review
+- Once Approved, merge into main
+
+6. Merge your branch with main
+
+Step 1 - Update the local main
+```bash
+git checkout main (or master)
+git pull
+```
+
+Step 2 - Merge main into your feature
+```bash
+git checkout your-feature-branch
+git merge main (or master)
+```
 
 ## Database Structure
 
