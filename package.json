@@ -17,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "npm": "^11.3.0",
+    "react-icons": "^5.5.0"
   }
 }
