@@ -61,55 +61,49 @@ npm run dev
 
 ## Manual Setup (If setup.sh doesn't work)
 
-# Install root dependencies
+### Install root dependencies
 
+```bash
 npm install
 cd client && npm install
 cd ../server && npm install
+```
 
-# Create .env manually in /server
+### Create .env manually in /server
 
+```bash
 PORT=3000
 OMDB_API_KEY=your_api_key_here
+```
 
-# Start database manually via SQLiteStudio or seed scripts
+### Start database manually via SQLiteStudio or seed scripts:
 
-# Then return to root:
+```bash
+NODE_ENV=development node server/seeds/seedAll.js
+```
 
+### Then return to root and start app:
+
+```bash
 cd ..
 npm run dev
-
-### Set up the database
-
-# Navigate to the server directory if not already there
-
-cd server
-
-### Start the development server
-
-# Return to project root
-
-cd ..
-
-# Start both client and server
-
-npm run dev
+```
 
 ### Development Workflow
 
 1. Create a feature branch
-   \`\`\`bash
+   ```bash
    git checkout -b feature/your-feature-name
-   \`\`\`
+   ```
 
 2. Make your changes
 
 3. Commit and push your changes
-   \`\`\`bash
+   ```bash
    git add .
    git commit -m "Description of your changes"
    git push -u origin feature/your-feature-name
-   \`\`\`
+   ```
 
 4. Create a Pull Request on GitHub
 
