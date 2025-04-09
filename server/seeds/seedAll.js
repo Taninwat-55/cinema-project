@@ -52,7 +52,7 @@ async function seedAll() {
   try {
     await runSeed('insertMovies');
     await runSeed('insertSeats');
-    await runSeed('insertScreenings');
+    await runSeed('insertShowings');
     await runSeed('insertUsers');
     await runSeed('insertBookings');
 
