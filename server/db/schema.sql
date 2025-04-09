@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS users (
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     name TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'user';
+    role TEXT DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Tabell för bokningar
@@ -104,8 +104,8 @@ VALUES
     ('Salong 1', 7, 10, 70),
     ('Salong 2', 5, 10, 50);
 
-CREATE TRIGGER update_movies_timestamp 
-AFTER UPDATE ON movies
-BEGIN
-    UPDATE movies SET updated_at = CURRENT_TIMESTAMP WHERE movie_id = NEW.movie_id;
-END;
+-- CREATE TRIGGER IF NOT EXISTS update_movies_timestamp 
+-- AFTER UPDATE ON movies
+-- BEGIN
+--     UPDATE movies SET updated_at = CURRENT_TIMESTAMP WHERE movie_id = NEW.movie_id;
+-- END;
