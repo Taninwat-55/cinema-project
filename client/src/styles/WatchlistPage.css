@@ -1,20 +1,15 @@
 .watchlist-page {
-  background: linear-gradient(
-    135deg,
-    #1a2526 0%,
-    #222831 100%
-  ); /* Gradient background for depth */
+  background: linear-gradient(135deg, #1a2526 0%, #222831 100%);
   color: #fff;
   min-height: 100vh;
   padding: 20px;
-  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Header Styles */
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,7 +44,6 @@
   font-size: 24px;
   font-weight: 600;
   background: white;
-  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
 }
 
@@ -70,6 +64,28 @@
   font-size: 16px;
   font-weight: 500;
   color: #e0e0e0;
+} */
+
+/* Movie List Styles */
+
+.empty-watchlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.empty-watchlist p {
+  font-size: 16px;
+  color: #fff !important;
+  margin-top: 10px;
+}
+
+.movie-list {
+  position: relative;
+  z-index: 1;
 }
 
 /* Movie List Styles */
@@ -83,19 +99,24 @@
 }
 
 .movie-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
   width: 20rem;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  padding: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .movie-card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
+  transform: translateY(-5px);
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking of info */
+  align-items: center; /* Center-align content */
 }
 
 .movie-info img {
@@ -103,33 +124,27 @@
   height: 300px;
   object-fit: cover;
   border-radius: 15px;
-  border: px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .movie-info p a {
-  color: #0086ac; /* Vibrant blue for the trailer link */
+  color: #0086ac;
   text-decoration: none;
-  font-size: 20px;
-  display: flex;
+  font-size: 14px;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
-  padding: 1px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
   transition: background 0.3s ease;
-}
-
-.movie-info p a:hover {
-  background: rgba(255, 255, 255, 0.2);
+  margin: 5px;
 }
 
 .movie-title {
   font-size: 18px;
   font-weight: 500;
-  margin: 5px 0;
+  margin: 5px 0; /* Reduced margin for tighter spacing */
   color: #000000;
 }
 
@@ -137,8 +152,8 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  margin-bottom: 5px;
-  padding: 20px;
+  margin: 0 10px 5px; /* Reduced bottom margin */
+  padding: 0.5rem;
 }
 
 .rating {
@@ -147,20 +162,22 @@
   padding: 2px 6px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
 }
 
 .year,
 .duration {
   color: #000000;
-  margin-top: 5px;
+  margin: 0.5rem;
 }
 
 .genres-text {
   font-size: 12px;
-  color: rgb(0, 0, 0);
-  margin: 5px 0;
+  color: #fff;
+  margin: 5px 10px;
+  padding: 0.5rem;
 }
-
 .watchlist-btn {
   background: #222831;
   backdrop-filter: blur(10px);
@@ -170,8 +187,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  margin: 1rem auto;
+  margin: 5px; /* Adjusted margin for consistency */
   padding: 5px 10px;
   border-radius: 8px;
   transition: background 0.3s ease;
@@ -181,29 +199,7 @@
   background: #3b495f;
 }
 
-/* Pagination Styles */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.dot.active {
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  cursor: pointer;
-}
-
-/* Back to Home Link */
+/* Back to Home Link (unchanged) */
 .back-to-home {
   display: inline-block;
   margin-top: 20px;
@@ -223,7 +219,7 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Loading and Error Styles */
+/* Loading and Error Styles (unchanged) */
 .watchlist-page h2 {
   font-size: 20px;
   font-weight: 500;

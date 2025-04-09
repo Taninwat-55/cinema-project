@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-//import { useParams } from "react-router-dom";
 import "../styles/WatchlistPage.css";
 import { Link } from "react-router-dom";
 
@@ -7,9 +6,13 @@ export default function WatchlistPage() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const { id } = useParams(); 
+  const [showWatchlist, setShowWatchlist] = useState(false);
 
   useEffect(() => {
+    // Check if the watchlist button was clicked (stored in localStorage)
+    const watchlistClicked = localStorage.getItem("watchlistClicked") === "true";
+    setShowWatchlist(watchlistClicked);
+
     const fetchMovies = async () => {
       try {
         const response = await fetch("/api/watchlist/");
@@ -26,7 +29,11 @@ export default function WatchlistPage() {
       }
     };
 
-    fetchMovies();
+    if (watchlistClicked) {
+      fetchMovies();
+    } else {
+      setLoading(false); // No need to fetch if watchlist isn't clicked
+    }
   }, []);
 
   if (loading) {
@@ -47,23 +54,8 @@ export default function WatchlistPage() {
 
   return (
     <div className="watchlist-page">
-      {/* Header Section */}
-      <header className="header">
-        <div className="menu-icon">
-          <span className="menu-bar"></span>
-          <span className="menu-bar"></span>
-          <span className="menu-bar"></span>
-        </div>
-        <h1>WATCHLIST</h1>
-        <div className="user-profile">
-          <span className="profile-icon">👤</span>
-          <span className="username">JOE76</span>
-        </div>
-      </header>
-
-      {/* Movie List Section */}
       <div className="movie-list">
-        {movies.length > 0 ? (
+        {showWatchlist && movies.length > 0 ? (
           movies.map((movie) => (
             <div key={movie.id || movie.title || Math.random()} className="movie-card">
               <div className="movie-info">
@@ -74,17 +66,6 @@ export default function WatchlistPage() {
                     alt={`Poster för ${movie.title}`}
                   />
                 )}
-                {movie.trailer_url && (
-                  <p>
-                    <a
-                      href={movie.trailer_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      ▶️ Se trailer
-                    </a>
-                  </p>
-                )}
                 <div className="movie-details">
                   <span className="rating">
                     IMDb {movie.imdbRating || "N/A"}
@@ -92,30 +73,18 @@ export default function WatchlistPage() {
                   <span className="year">{movie.release_year}</span>
                   <span className="duration">{movie.length_minutes} min</span>
                 </div>
-                <p className="genres-text">
-                  {movie.genre ? movie.genre.split(", ").join(", ") : "N/A"}
-                </p>
-                <button className="watchlist-btn">❤️ Watchlist</button>
               </div>
             </div>
           ))
         ) : (
-          <p>No movies in your watchlist.</p>
+          <div className="empty-watchlist">
+            <h3>Your watchlist is empty !</h3>
+            <p>Visite the main page to add movies to your watchlist</p>
+          </div>
         )}
       </div>
-
-      {/* Pagination Dots (Dynamic based on number of movies) */}
-      <div className="pagination">
-        {movies.length > 0 &&
-          movies.map((movie, index) => (
-            <span
-              key={`dot-${movie.id || index}`}
-              className={`dot ${index === 0 ? "active" : ""}`}
-            />
-          ))}
-      </div>
       <Link to="/" className="back-to-home">
-        Back to Home 
+        Back to Home
       </Link>
     </div>
   );
